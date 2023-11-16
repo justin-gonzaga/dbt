@@ -1,0 +1,6 @@
+﻿ArticleDescription,Category,CategoryDescription,Department,DepartmentDescription,ProductNumber,SalesOrg,Segment,SegmentDescription,SubCategory,SubCategoryDescription
+Pancakes,1234,Cakes,1,Food,CAKE-1234,2000,3,Pancakes,2,Pancake
+Cupcakes,1234,Cakes,1,Food,CAKE-1235,3000,4,Cupcake,4,Cupcake
+Waffles,1234,Cakes,1,Food,CAKE-1234,2000,5,Waffles,5,Waffles
+Cookies,,,,,,,,,,
+Biscuits,,,,,,,,,,

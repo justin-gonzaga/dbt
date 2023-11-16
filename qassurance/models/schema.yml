@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: pil
+    tests:
+      - comparison:
+          compare_model: ref('pil_two')
+          compare_columns:
+            - Sales
+          metric: ['Sales']
+          group_by: ['TxnStartDate']
+          config:
+            severity: error
+            error_if: ">1"
+            warn_if: ">0"
+            fail_calc: "SUM(CASE WHEN outcome_sales = 'Fail' THEN 1 ELSE 0 END)"
+
+  - name: dim_product_curr_v
+    tests:
+      - nullability:
+          columns_to_check:
+            - articledescription
+            - segment
+      - unexpected_values:
+          columns_to_check:
+            articledescription: ['A', 'B', 'C']
+            segment: ['hello']
+      - duplicate:
+          columns_to_check:
+            - productnumber
+      - duplicate_count:
+          columns_to_check:
+            - productnumber
+          group_by: ['salesorg']
+          warn_threshold: 1
+          error_threshold: 2
+          config:
+            severity: error
+            error_if: ">1"
+            warn_if: ">1 OR SUM(CASE WHEN outcome = 'Warning' THEN 1 ELSE 0 END) >0"
+            fail_calc: "SUM(CASE WHEN outcome = 'Fail' THEN 1 ELSE 0 END)"
+            
+
+
+
+          
+# Trend 
+# Nullability X
+# Unexpected Values X
+# Reconciliation
+# Comparison X
+# Duplicates X
